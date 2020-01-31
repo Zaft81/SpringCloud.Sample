@@ -1,7 +1,7 @@
 package com.ddal.shopitem.controller;
 
 import com.ddal.shopitem.entity.ShopItem;
-import com.ddal.shopitem.entity.service.ShopItemService;
+import com.ddal.shopitem.service.ShopItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

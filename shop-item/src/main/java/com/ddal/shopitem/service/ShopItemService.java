@@ -1,4 +1,4 @@
-package com.ddal.shopitem.entity.service;
+package com.ddal.shopitem.service;
 
 import com.ddal.shopitem.entity.ShopItem;
 import org.springframework.stereotype.Service;
