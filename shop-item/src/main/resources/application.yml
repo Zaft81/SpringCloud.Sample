@@ -2,14 +2,14 @@ server:
   port: 8081
 spring:
   application:
-    #起个名称作为该服务的名称，该服务注册到eureka注册中心的名称，比如商品服务
+    #璧蜂釜鍚嶇О浣滀负璇ユ湇鍔＄殑鍚嶇О锛岃鏈嶅姟娉ㄥ唽鍒癳ureka娉ㄥ唽涓績鐨勫悕绉帮紝姣斿鍟嗗搧鏈嶅姟
     name: shop-item
 
-#服务注册到eureka注册中心的地址
+#鏈嶅姟娉ㄥ唽鍒癳ureka娉ㄥ唽涓績鐨勫湴鍧�
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8100/eureka
-    #因为该应用为服务提供者，是eureka的一个客户端，需要注册到注册中心
+    #鍥犱负璇ュ簲鐢ㄤ负鏈嶅姟鎻愪緵鑰咃紝鏄痚ureka鐨勪竴涓鎴风锛岄渶瑕佹敞鍐屽埌娉ㄥ唽涓績
     register-with-eureka: true
     fetch-registry: true
