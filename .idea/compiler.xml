@@ -6,15 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-server-sn" />
         <module name="shop-item" />
-        <module name="SpringCloud.Sample" />
+        <module name="eureka-server-cluster02" />
+        <module name="eureka-server-cluster01" />
         <module name="shop-order" />
+        <module name="eureka-server-sn" />
+        <module name="SpringCloud.Sample" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-server-cluster01" options="-parameters" />
+      <module name="eureka-server-cluster02" options="-parameters" />
       <module name="eureka-server-sn" options="-parameters" />
       <module name="shop-item" options="-parameters" />
       <module name="shop-order" options="-parameters" />

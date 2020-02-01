@@ -42,6 +42,8 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <!-- 上面引入中已经包含了ribbon，因此，不需要再引入-->
+        <!-- over -->
 
     </dependencies>
 

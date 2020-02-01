@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class OrderConfig {
 
     @Bean
+    //注解Ribbon 负载均衡
     @LoadBalanced
     public RestTemplate restTemplate(){
         return new RestTemplate();
