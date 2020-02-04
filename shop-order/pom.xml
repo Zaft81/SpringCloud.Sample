@@ -45,6 +45,13 @@
         <!-- 上面引入中已经包含了ribbon，因此，不需要再引入-->
         <!-- over -->
 
+        <!-- import hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!-- hystrix over -->
+
     </dependencies>
 
     <dependencyManagement>

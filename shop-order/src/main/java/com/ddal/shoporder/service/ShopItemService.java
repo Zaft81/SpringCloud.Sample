@@ -1,6 +1,7 @@
 package com.ddal.shoporder.service;
 
 import com.ddal.shoporder.entity.ShopItem;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,13 @@ public class ShopItemService {
     @Autowired
     private RestTemplate restTemplate;
 
+    /**
+     * HystrixCommand进行容错处理
+     * fallbackMethod的方法参数的个数和类型必须与原方法保持一致
+     * @param id
+     * @return
+     */
+    @HystrixCommand(fallbackMethod = "getByItemIDFallbackMethod")
     public ShopItem getByItemID(String id){
 
 
@@ -35,5 +43,16 @@ public class ShopItemService {
         //该方法走eureka注册中心调用(去注册中心根据app-item查找服务，这种方式必须先开启负载均衡@LoadBalanced，见OrderConfig.java)
         String itemUrl = "http://shop-item/shopitem/{id}";
         return restTemplate.getForObject(itemUrl,ShopItem.class,id);
+    }
+
+    /**
+     * 请求失败执行的方法
+     * 方法参数个数和类型必须与原方法一致
+     *
+     * @param id
+     * @return
+     */
+    public ShopItem getByItemIDFallbackMethod(String id){
+        return new ShopItem(id,"查询出错!",null,null,null);
     }
 }
