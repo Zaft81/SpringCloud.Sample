@@ -1,6 +1,7 @@
 package com.ddal.shoporder.service;
 
 import com.ddal.shoporder.entity.ShopItem;
+import com.ddal.shoporder.feign.ShopItemFeignClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class ShopItemService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private ShopItemFeignClient shopItemFeignClient;
+
     /**
      * HystrixCommand进行容错处理
      * fallbackMethod的方法参数的个数和类型必须与原方法保持一致
@@ -27,7 +31,7 @@ public class ShopItemService {
     @HystrixCommand(fallbackMethod = "getByItemIDFallbackMethod")
     public ShopItem getByItemID(String id){
 
-
+//        //单注册中心方式
 //        String serviceId = "app-item";
 //        List<ServiceInstance> instances = this.discoveryClient.getInstances(serviceId);
 //        if(instances.isEmpty()){
@@ -41,8 +45,13 @@ public class ShopItemService {
 
 
         //该方法走eureka注册中心调用(去注册中心根据app-item查找服务，这种方式必须先开启负载均衡@LoadBalanced，见OrderConfig.java)
-        String itemUrl = "http://shop-item/shopitem/{id}";
-        return restTemplate.getForObject(itemUrl,ShopItem.class,id);
+        //String itemUrl = "http://shop-item/shopitem/{id}";
+        //return restTemplate.getForObject(itemUrl,ShopItem.class,id);
+
+
+        //以下为通过Feign方式调用
+        return shopItemFeignClient.queryShopItemById(id);
+
     }
 
     /**
