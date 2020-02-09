@@ -28,7 +28,8 @@ public class ShopItemService {
      * @param id
      * @return
      */
-    @HystrixCommand(fallbackMethod = "getByItemIDFallbackMethod")
+    //不在此处单独处理fallbackMethod，统一到ShopItemServiceFallback中处理
+    //@HystrixCommand(fallbackMethod = "getByItemIDFallbackMethod")
     public ShopItem getByItemID(String id){
 
 //        //单注册中心方式

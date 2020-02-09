@@ -35,3 +35,9 @@ eureka:
 shop-item:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
+#开启Hystrix断路器
+feign:
+  hystrix:
+    enabled: true
